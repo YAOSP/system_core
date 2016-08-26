@@ -559,6 +559,14 @@ on property:security.perf_harden=0
 on property:security.perf_harden=1
     write /proc/sys/kernel/perf_event_paranoid 3
 
+# adb over network
+on property:service.adb.tcp.port=5555
+    stop adbd
+    start adbd
+on property:service.adb.tcp.port=-1
+    stop adbd
+    start adbd
+
 ## Daemon processes to be run by init.
 ##
 service ueventd /sbin/ueventd
